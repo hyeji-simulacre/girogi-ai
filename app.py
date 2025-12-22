@@ -182,7 +182,7 @@ def render_header():
 
     with col2:
         st.title("끼록이 AI", anchor=False)
-        st.caption("기록이의 동생, AI를 좋아하는 사이버펑크 거위")
+        st.caption("기록과사회 뉴스레터 데이터를 학습한 AI 챗봇")
 
     st.divider()
 
@@ -190,7 +190,7 @@ def render_welcome():
     """환영 메시지"""
     if not st.session_state.messages:
         st.info(
-            "안녕하세요! 저는 기록이 동생 **끼록이**예요. AI를 좋아하는 사이버펑크 거위랍니다. "
+            "안녕하세요! 저는 기록이 동생 **끼록이**예요. 아카이브와 AI를 좋아하는 사이버펑크 거위랍니다. "
             "기록과사회 뉴스레터를 다 읽어서 기록학에 대해 이것저것 알고 있어요. "
             "궁금한 거 있으면 편하게 물어보세요!"
         )
@@ -429,6 +429,7 @@ def main():
     # 푸터
     st.divider()
     st.caption("끼록이는 기록과사회 뉴스레터를 학습한 AI 챗봇이에요. 답변은 참고용으로만 활용해주세요.")
+    st.caption("Made by [tolerance](https://brunch.co.kr/@hyeji-simulacre)")
 
 if __name__ == "__main__":
     main()
