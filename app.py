@@ -310,17 +310,19 @@ def main():
 
     /* 채팅 입력창 강조 */
     .stChatInput {
-        border: 2px solid #4A9BC7 !important;
-        border-radius: 25px !important;
-        box-shadow: 0 4px 15px rgba(74, 155, 199, 0.2) !important;
+        border: 3px solid #4A9BC7 !important;
+        border-radius: 30px !important;
+        box-shadow: 0 6px 20px rgba(74, 155, 199, 0.25) !important;
     }
     .stChatInput > div {
-        border-radius: 25px !important;
+        border-radius: 30px !important;
+        min-height: 80px !important;
     }
     .stChatInput textarea {
-        font-size: 1.1rem !important;
-        padding: 15px 20px !important;
-        min-height: 60px !important;
+        font-size: 1.2rem !important;
+        padding: 25px 25px !important;
+        min-height: 80px !important;
+        line-height: 1.5 !important;
     }
     .stChatInput button {
         background-color: #4A9BC7 !important;
