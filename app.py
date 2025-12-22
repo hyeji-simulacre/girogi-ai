@@ -307,6 +307,31 @@ def main():
     .stSpinner {
         animation: fadeIn 0.2s ease;
     }
+
+    /* 채팅 입력창 강조 */
+    .stChatInput {
+        border: 2px solid #4A9BC7 !important;
+        border-radius: 25px !important;
+        box-shadow: 0 4px 15px rgba(74, 155, 199, 0.2) !important;
+    }
+    .stChatInput > div {
+        border-radius: 25px !important;
+    }
+    .stChatInput textarea {
+        font-size: 1.1rem !important;
+        padding: 15px 20px !important;
+        min-height: 60px !important;
+    }
+    .stChatInput button {
+        background-color: #4A9BC7 !important;
+        border-radius: 50% !important;
+        width: 45px !important;
+        height: 45px !important;
+    }
+    .stChatInput button:hover {
+        background-color: #3A8BB7 !important;
+        transform: scale(1.05);
+    }
     </style>
     """, unsafe_allow_html=True)
 
