@@ -252,9 +252,10 @@ def render_chat_history():
 
 def main():
     # 페이지 설정
+    favicon_path = Path(__file__).parent / "assets" / "kkirogi.png"
     st.set_page_config(
         page_title="끼록이 - 기록과사회 AI 챗봇",
-        page_icon="🤖",
+        page_icon=str(favicon_path) if favicon_path.exists() else "🪿",
         layout="centered"
     )
 
