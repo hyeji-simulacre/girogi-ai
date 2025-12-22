@@ -267,13 +267,23 @@ def main():
         transition: all 0.2s ease-in-out !important;
     }
 
-    /* 버튼 호버 효과 */
+    /* 버튼 호버 및 클릭 효과 */
     .stButton > button {
         transition: all 0.15s ease !important;
     }
     .stButton > button:hover {
         transform: translateY(-1px);
         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        background-color: #4A9BC7 !important;
+        color: white !important;
+        border-color: #4A9BC7 !important;
+    }
+    .stButton > button:active,
+    .stButton > button:focus {
+        background-color: #3A8BB7 !important;
+        color: white !important;
+        border-color: #3A8BB7 !important;
+        box-shadow: 0 0 0 3px rgba(74, 155, 199, 0.3) !important;
     }
 
     /* Expander 애니메이션 개선 */
