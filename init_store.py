@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-기로기AI - Gemini File Search 스토어 초기화 및 파일 업로드
+끼록이 AI - Gemini File Search 스토어 초기화 및 파일 업로드
 기록과사회 뉴스레터 420건을 Gemini File Search에 업로드
 """
 
@@ -93,7 +93,7 @@ def save_config(store_id: str, store_name: str):
 
 def main():
     print("=" * 60)
-    print("기로기AI - Gemini File Search 스토어 초기화")
+    print("끼록이 AI - Gemini File Search 스토어 초기화")
     print("=" * 60)
     print()
 
