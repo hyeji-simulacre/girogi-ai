@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 끼록이 AI - Gemini File Search 스토어 초기화 및 파일 업로드
-기록과사회 뉴스레터 420건을 Gemini File Search에 업로드
+기록과사회 뉴스레터를 Gemini File Search에 업로드
 """
 
 import os
