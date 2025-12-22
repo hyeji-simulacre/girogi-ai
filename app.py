@@ -58,6 +58,14 @@ def load_store_config():
             return json.load(f)
     return None
 
+def load_article_metadata():
+    """기사 메타데이터 로드 (제목, URL 매핑)"""
+    metadata_path = Path(__file__).parent / "article_metadata.json"
+    if metadata_path.exists():
+        with open(metadata_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    return {}
+
 def search_and_answer(api_key: str, corpus_name: str, query: str, chat_history: list = None):
     """Gemini File Search로 검색하고 답변 생성"""
 
@@ -154,6 +162,8 @@ def init_session_state():
         st.session_state.api_key = get_api_key()
     if "store_config" not in st.session_state:
         st.session_state.store_config = load_store_config()
+    if "article_metadata" not in st.session_state:
+        st.session_state.article_metadata = load_article_metadata()
 
 def render_header():
     """헤더 렌더링"""
@@ -203,6 +213,29 @@ def render_welcome():
                     return q
     return None
 
+def get_article_info(filename: str) -> dict:
+    """파일명으로 기사 정보(제목, URL) 조회"""
+    metadata = st.session_state.get("article_metadata", {})
+    # .md 확장자 제거
+    key = filename.replace('.md', '')
+    if key in metadata:
+        return metadata[key]
+    return {'title': filename, 'url': None}
+
+def render_citations(citations: list):
+    """출처 목록 렌더링"""
+    with st.expander("📚 참고한 글"):
+        for cite in citations:
+            # 메타데이터에서 실제 제목과 URL 조회
+            article_info = get_article_info(cite['title'])
+            title = article_info['title']
+            url = article_info['url']
+
+            if url:
+                st.markdown(f"- [{title}]({url})")
+            else:
+                st.markdown(f"- **{title}**")
+
 def render_chat_history():
     """채팅 히스토리 렌더링"""
     for message in st.session_state.messages:
@@ -212,11 +245,7 @@ def render_chat_history():
 
             # 출처가 있으면 표시
             if message.get("citations"):
-                with st.expander("📚 참고한 글"):
-                    for cite in message["citations"]:
-                        st.markdown(f"- **{cite['title']}**")
-                        if cite.get('text'):
-                            st.caption(cite['text'][:100] + "...")
+                render_citations(message["citations"])
 
 def main():
     # 페이지 설정
@@ -276,11 +305,7 @@ def main():
             st.markdown(answer)
 
             if citations:
-                with st.expander("📚 참고한 글"):
-                    for cite in citations:
-                        st.markdown(f"- **{cite['title']}**")
-                        if cite.get('text'):
-                            st.caption(cite['text'][:100] + "...")
+                render_citations(citations)
 
         st.session_state.messages.append({
             "role": "assistant",
@@ -310,11 +335,7 @@ def main():
             st.markdown(answer)
 
             if citations:
-                with st.expander("📚 참고한 글"):
-                    for cite in citations:
-                        st.markdown(f"- **{cite['title']}**")
-                        if cite.get('text'):
-                            st.caption(cite['text'][:100] + "...")
+                render_citations(citations)
 
         # AI 응답 저장
         st.session_state.messages.append({
