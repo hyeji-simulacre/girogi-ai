@@ -20,7 +20,7 @@ MODEL = "gemini-2.5-flash"
 GIROGI_AVATAR = "🪿"
 USER_AVATAR = "👤"
 
-SYSTEM_PROMPT = """당신은 '기로기'입니다. 기록과사회 뉴스레터의 친근한 AI 도우미예요.
+SYSTEM_PROMPT = """당신은 'AI 기록이'입니다. 기록과사회 뉴스레터의 친근한 AI 도우미예요.
 
 ## 성격
 - 친근하고 편안한 말투를 사용해요
@@ -168,7 +168,7 @@ def render_header():
             st.markdown("# 🪿")
 
     with col2:
-        st.title("기로기AI")
+        st.title("AI 기록이")
         st.caption("기록과사회 뉴스레터 420편을 읽은 친구")
 
     st.divider()
@@ -177,7 +177,7 @@ def render_welcome():
     """환영 메시지"""
     if not st.session_state.messages:
         st.info(
-            "안녕하세요! 저는 **기로기**예요. "
+            "안녕하세요! 저는 **AI 기록이**예요. "
             "기록과사회 뉴스레터를 다 읽어서 기록학에 대해 이것저것 알고 있어요. "
             "궁금한 거 있으면 편하게 물어보세요!"
         )
@@ -186,9 +186,15 @@ def render_welcome():
         st.markdown("**이런 걸 물어볼 수 있어요:**")
         example_questions = [
             "1인 기록관 문제가 뭐야?",
+            "공공기록물법 개정 논의 정리해줘",
             "AI 시대에 기록연구사는 어떤 역량이 필요해?",
             "커뮤니티 아카이브 사례 알려줘",
-            "공공기록물법 개정 논의 정리해줘"
+            "대통령기록물 관리 이슈가 뭐야?",
+            "기록전문가 커리어 고민에 대한 글 있어?",
+            "미술 아카이브 사례 소개해줘",
+            "디지털 보존의 과제는 뭐야?",
+            "기록 윤리와 개인정보 관련 논의가 있어?",
+            "지역기록화 사례 알려줘"
         ]
         cols = st.columns(2)
         for i, q in enumerate(example_questions):
