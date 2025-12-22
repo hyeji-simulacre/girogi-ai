@@ -181,7 +181,7 @@ def render_header():
             st.markdown("# 🪿")
 
     with col2:
-        st.title("끼록이")
+        st.title("끼록이 AI", anchor=False)
         st.caption("기록이의 동생, AI를 좋아하는 사이버펑크 거위")
 
     st.divider()
