@@ -185,6 +185,7 @@ def render_header():
         st.caption("기록과사회 뉴스레터 데이터를 학습한 AI 챗봇")
 
     st.divider()
+    st.caption("끼록이는 기록과사회 뉴스레터를 학습한 AI 챗봇이에요. 답변은 참고용으로만 활용해주세요. · Made by tolerance")
 
 def render_welcome():
     """환영 메시지"""
@@ -395,11 +396,6 @@ def main():
             "citations": citations
         })
         st.rerun()
-
-    # 푸터
-    st.divider()
-    st.caption("끼록이는 기록과사회 뉴스레터를 학습한 AI 챗봇이에요. 답변은 참고용으로만 활용해주세요.")
-    st.caption("Made by tolerance")
 
     # 사용자 입력
     if prompt := st.chat_input("궁금한 게 있으면 물어보세요!"):
