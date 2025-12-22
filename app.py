@@ -248,6 +248,39 @@ def main():
     # 예시 질문 클릭 처리
     if example_query:
         st.session_state.messages.append({"role": "user", "content": example_query})
+
+    # 마지막 메시지가 user이고 응답이 없으면 답변 생성
+    needs_response = (
+        st.session_state.messages and
+        st.session_state.messages[-1]["role"] == "user" and
+        len([m for m in st.session_state.messages if m["role"] == "assistant"]) < len([m for m in st.session_state.messages if m["role"] == "user"])
+    )
+
+    if needs_response:
+        last_user_msg = st.session_state.messages[-1]["content"]
+        with st.chat_message("assistant", avatar=GIROGI_AVATAR):
+            with st.spinner("기록을 뒤적이는 중..."):
+                answer, citations = search_and_answer(
+                    api_key=st.session_state.api_key,
+                    corpus_name=corpus_name,
+                    query=last_user_msg,
+                    chat_history=st.session_state.messages[:-1]
+                )
+
+            st.markdown(answer)
+
+            if citations:
+                with st.expander("📚 참고한 글"):
+                    for cite in citations:
+                        st.markdown(f"- **{cite['title']}**")
+                        if cite.get('text'):
+                            st.caption(cite['text'][:100] + "...")
+
+        st.session_state.messages.append({
+            "role": "assistant",
+            "content": answer,
+            "citations": citations
+        })
         st.rerun()
 
     # 사용자 입력
