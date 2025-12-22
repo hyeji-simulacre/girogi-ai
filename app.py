@@ -380,8 +380,13 @@ def main():
         })
         st.rerun()
 
+    # 푸터
+    st.divider()
+    st.caption("끼록이는 기록과사회 뉴스레터를 학습한 AI 챗봇이에요. 답변은 참고용으로만 활용해주세요.")
+    st.caption("Made by tolerance")
+
     # 사용자 입력
-    if prompt := st.chat_input("기록에 대해 궁금한 게 있으면 물어보세요!"):
+    if prompt := st.chat_input("궁금한 게 있으면 물어보세요!"):
         # 사용자 메시지 추가
         st.session_state.messages.append({"role": "user", "content": prompt})
 
@@ -409,11 +414,6 @@ def main():
             "content": answer,
             "citations": citations
         })
-
-    # 푸터
-    st.divider()
-    st.caption("끼록이는 기록과사회 뉴스레터를 학습한 AI 챗봇이에요. 답변은 참고용으로만 활용해주세요.")
-    st.caption("Made by [tolerance](https://brunch.co.kr/@hyeji-simulacre)")
 
 if __name__ == "__main__":
     main()
