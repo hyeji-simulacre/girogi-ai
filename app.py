@@ -323,15 +323,23 @@ def main():
     #MainMenu {visibility: hidden;}
     header {visibility: hidden;}
     footer {visibility: hidden;}
-    .stDeployButton {display: none;}
-    [data-testid="stToolbar"] {display: none;}
-    [data-testid="stDecoration"] {display: none;}
-    [data-testid="stStatusWidget"] {display: none;}
-    .viewerBadge_container__r5tak {display: none;}
-    .styles_viewerBadge__CvC9N {display: none;}
-    ._profileContainer_gzau3_53 {display: none;}
-    ._profilePreview_gzau3_63 {display: none;}
-    [data-testid="stAppViewBlockContainer"] > div:last-child a[href*="streamlit.io"] {display: none;}
+    .stDeployButton {display: none !important;}
+    [data-testid="stToolbar"] {display: none !important;}
+    [data-testid="stDecoration"] {display: none !important;}
+    [data-testid="stStatusWidget"] {display: none !important;}
+
+    /* 하단 뱃지 완전 숨기기 */
+    div[class*="viewerBadge"] {display: none !important;}
+    div[class*="profileContainer"] {display: none !important;}
+    div[class*="profilePreview"] {display: none !important;}
+    iframe[title="Streamlit Cloud"] {display: none !important;}
+    div[data-testid="stBottom"] > div {display: none !important;}
+    .stBottom iframe {display: none !important;}
+    div:has(> iframe[title*="Streamlit"]) {display: none !important;}
+
+    /* 우하단 고정 요소 숨기기 */
+    div[style*="position: fixed"][style*="bottom"] {display: none !important;}
+    div[style*="position: fixed"][style*="right"] a[href*="streamlit"] {display: none !important;}
     </style>
     """, unsafe_allow_html=True)
 
