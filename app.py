@@ -322,24 +322,18 @@ def main():
     /* Streamlit 기본 UI 숨기기 */
     #MainMenu {visibility: hidden;}
     header {visibility: hidden;}
-    footer {visibility: hidden;}
     .stDeployButton {display: none !important;}
     [data-testid="stToolbar"] {display: none !important;}
     [data-testid="stDecoration"] {display: none !important;}
-    [data-testid="stStatusWidget"] {display: none !important;}
 
-    /* 하단 뱃지 완전 숨기기 */
-    div[class*="viewerBadge"] {display: none !important;}
-    div[class*="profileContainer"] {display: none !important;}
-    div[class*="profilePreview"] {display: none !important;}
-    iframe[title="Streamlit Cloud"] {display: none !important;}
-    div[data-testid="stBottom"] > div {display: none !important;}
-    .stBottom iframe {display: none !important;}
-    div:has(> iframe[title*="Streamlit"]) {display: none !important;}
-
-    /* 우하단 고정 요소 숨기기 */
-    div[style*="position: fixed"][style*="bottom"] {display: none !important;}
-    div[style*="position: fixed"][style*="right"] a[href*="streamlit"] {display: none !important;}
+    /* GitHub 뱃지만 숨기기 */
+    a[href*="github.com"] img {display: none !important;}
+    div[class*="stGitHub"] {display: none !important;}
+    [data-testid="stHeader"] a[href*="github"] {display: none !important;}
+    button[title="View app source"] {display: none !important;}
+    div[class*="GitHub"] {display: none !important;}
+    a[title*="GitHub"] {display: none !important;}
+    a[aria-label*="GitHub"] {display: none !important;}
     </style>
     """, unsafe_allow_html=True)
 
