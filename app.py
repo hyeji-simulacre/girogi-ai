@@ -176,7 +176,7 @@ def render_header():
         # 이미지가 없으면 이모지로 대체
         img_path = Path(__file__).parent / "assets" / "kkirogi.png"
         if img_path.exists():
-            st.image(str(img_path), width=100)
+            st.image(str(img_path), width=150)
         else:
             st.markdown("# 🪿")
 
