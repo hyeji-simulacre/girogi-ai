@@ -227,7 +227,7 @@ def get_article_info(filename: str) -> dict:
 
 def render_citations(citations: list):
     """출처 목록 렌더링"""
-    with st.expander("📚 참고한 글"):
+    with st.expander("📚 참고한 글", expanded=True):
         for cite in citations:
             # 메타데이터에서 실제 제목과 URL 조회
             article_info = get_article_info(cite['title'])
@@ -258,6 +258,47 @@ def main():
         page_icon=str(favicon_path) if favicon_path.exists() else "🪿",
         layout="centered"
     )
+
+    # 부드러운 애니메이션을 위한 커스텀 CSS
+    st.markdown("""
+    <style>
+    /* 전체 트랜지션 부드럽게 */
+    * {
+        transition: all 0.2s ease-in-out !important;
+    }
+
+    /* 버튼 호버 효과 */
+    .stButton > button {
+        transition: all 0.15s ease !important;
+    }
+    .stButton > button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Expander 애니메이션 개선 */
+    .streamlit-expanderHeader {
+        transition: background-color 0.2s ease !important;
+    }
+    .streamlit-expanderContent {
+        transition: max-height 0.3s ease-out !important;
+    }
+
+    /* 채팅 메시지 페이드인 */
+    .stChatMessage {
+        animation: fadeIn 0.3s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 스피너 부드럽게 */
+    .stSpinner {
+        animation: fadeIn 0.2s ease;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
     # 세션 초기화
     init_session_state()
