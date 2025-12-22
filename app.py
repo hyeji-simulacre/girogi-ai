@@ -18,7 +18,7 @@ BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
 MODEL = "gemini-2.5-flash"
 
 # 끼록이 캐릭터 설정 (GitHub raw URL for avatar)
-KKIROGI_AVATAR = "https://raw.githubusercontent.com/hyeji-simulacre/girogi-ai/main/assets/kkirogi.png"
+KKIROGI_AVATAR = "https://raw.githubusercontent.com/hyeji-simulacre/girogi-ai/main/assets/kkirogi_chat.png"
 USER_AVATAR = "👤"
 
 SYSTEM_PROMPT = """당신은 '끼록이'입니다. 기록이의 동생이에요. AI를 좋아하는 사이버펑크 거위예요.
