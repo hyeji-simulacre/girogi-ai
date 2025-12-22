@@ -327,6 +327,11 @@ def main():
     [data-testid="stToolbar"] {display: none;}
     [data-testid="stDecoration"] {display: none;}
     [data-testid="stStatusWidget"] {display: none;}
+    .viewerBadge_container__r5tak {display: none;}
+    .styles_viewerBadge__CvC9N {display: none;}
+    ._profileContainer_gzau3_53 {display: none;}
+    ._profilePreview_gzau3_63 {display: none;}
+    [data-testid="stAppViewBlockContainer"] > div:last-child a[href*="streamlit.io"] {display: none;}
     </style>
     """, unsafe_allow_html=True)
 
