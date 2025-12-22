@@ -318,6 +318,15 @@ def main():
     .stChatInput button:hover {
         background-color: #3A8BB7 !important;
     }
+
+    /* Streamlit 기본 UI 숨기기 */
+    #MainMenu {visibility: hidden;}
+    header {visibility: hidden;}
+    footer {visibility: hidden;}
+    .stDeployButton {display: none;}
+    [data-testid="stToolbar"] {display: none;}
+    [data-testid="stDecoration"] {display: none;}
+    [data-testid="stStatusWidget"] {display: none;}
     </style>
     """, unsafe_allow_html=True)
 
