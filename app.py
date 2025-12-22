@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-기로기AI - 기록과사회 뉴스레터 챗봇
+끼록이 - 기록과사회 뉴스레터 AI 챗봇
 Gemini File Search 기반 RAG 챗봇
+기록이의 동생, AI를 좋아하는 사이버펑크 거위
 """
 
 import os
@@ -16,15 +17,17 @@ from pathlib import Path
 BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
 MODEL = "gemini-2.5-flash"
 
-# 기로기 캐릭터 설정
-GIROGI_AVATAR = "🪿"
+# 끼록이 캐릭터 설정 (GitHub raw URL for avatar)
+KKIROGI_AVATAR = "https://raw.githubusercontent.com/hyeji-simulacre/girogi-ai/main/assets/kkirogi.png"
 USER_AVATAR = "👤"
 
-SYSTEM_PROMPT = """당신은 'AI 기록이'입니다. 기록과사회 뉴스레터의 친근한 AI 도우미예요.
+SYSTEM_PROMPT = """당신은 '끼록이'입니다. 기록이의 동생이에요. AI를 좋아하는 사이버펑크 거위예요.
+기록과사회 뉴스레터의 친근한 AI 도우미이기도 해요.
 
 ## 성격
 - 친근하고 편안한 말투를 사용해요
 - 기록학/아카이브에 대해 잘 알고 있어요
+- AI와 기술에 관심이 많아요
 - 질문에 성실하게 답변하지만, 너무 딱딱하지 않아요
 
 ## 답변 방식
@@ -171,15 +174,15 @@ def render_header():
 
     with col1:
         # 이미지가 없으면 이모지로 대체
-        img_path = Path(__file__).parent / "assets" / "girogi.png"
+        img_path = Path(__file__).parent / "assets" / "kkirogi.png"
         if img_path.exists():
             st.image(str(img_path), width=100)
         else:
             st.markdown("# 🪿")
 
     with col2:
-        st.title("AI 기록이")
-        st.caption("기록과사회 뉴스레터 420편을 읽은 친구")
+        st.title("끼록이")
+        st.caption("기록이의 동생, AI를 좋아하는 사이버펑크 거위")
 
     st.divider()
 
@@ -187,7 +190,7 @@ def render_welcome():
     """환영 메시지"""
     if not st.session_state.messages:
         st.info(
-            "안녕하세요! 저는 **AI 기록이**예요. "
+            "안녕하세요! 저는 **끼록이**예요. 기록이의 동생이에요. "
             "기록과사회 뉴스레터를 다 읽어서 기록학에 대해 이것저것 알고 있어요. "
             "궁금한 거 있으면 편하게 물어보세요!"
         )
@@ -239,7 +242,7 @@ def render_citations(citations: list):
 def render_chat_history():
     """채팅 히스토리 렌더링"""
     for message in st.session_state.messages:
-        avatar = USER_AVATAR if message["role"] == "user" else GIROGI_AVATAR
+        avatar = USER_AVATAR if message["role"] == "user" else KKIROGI_AVATAR
         with st.chat_message(message["role"], avatar=avatar):
             st.markdown(message["content"])
 
@@ -250,8 +253,8 @@ def render_chat_history():
 def main():
     # 페이지 설정
     st.set_page_config(
-        page_title="기로기AI - 기록과사회 챗봇",
-        page_icon="🪿",
+        page_title="끼록이 - 기록과사회 AI 챗봇",
+        page_icon="🤖",
         layout="centered"
     )
 
@@ -293,7 +296,7 @@ def main():
 
     if needs_response:
         last_user_msg = st.session_state.messages[-1]["content"]
-        with st.chat_message("assistant", avatar=GIROGI_AVATAR):
+        with st.chat_message("assistant", avatar=KKIROGI_AVATAR):
             with st.spinner("기록을 뒤적이는 중..."):
                 answer, citations = search_and_answer(
                     api_key=st.session_state.api_key,
@@ -323,7 +326,7 @@ def main():
             st.markdown(prompt)
 
         # AI 응답 생성
-        with st.chat_message("assistant", avatar=GIROGI_AVATAR):
+        with st.chat_message("assistant", avatar=KKIROGI_AVATAR):
             with st.spinner("기록을 뒤적이는 중..."):
                 answer, citations = search_and_answer(
                     api_key=st.session_state.api_key,
@@ -346,7 +349,7 @@ def main():
 
     # 푸터
     st.divider()
-    st.caption("기로기AI는 기록과사회 뉴스레터를 학습한 AI 챗봇이에요. 답변은 참고용으로만 활용해주세요.")
+    st.caption("끼록이는 기록과사회 뉴스레터를 학습한 AI 챗봇이에요. 답변은 참고용으로만 활용해주세요.")
 
 if __name__ == "__main__":
     main()
