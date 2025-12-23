@@ -218,27 +218,31 @@ def render_welcome():
     return None
 
 def get_article_info(filename: str) -> dict:
-    """파일명으로 기사 정보(제목, URL) 조회"""
+    """파일명으로 기사 정보(제목, URL, 저자) 조회"""
     metadata = st.session_state.get("article_metadata", {})
     # .md 확장자 제거
     key = filename.replace('.md', '')
     if key in metadata:
         return metadata[key]
-    return {'title': filename, 'url': None}
+    return {'title': filename, 'url': None, 'author': None}
 
 def render_citations(citations: list):
     """출처 목록 렌더링"""
     with st.expander("📚 참고한 글", expanded=True):
         for cite in citations:
-            # 메타데이터에서 실제 제목과 URL 조회
+            # 메타데이터에서 실제 제목, URL, 저자 조회
             article_info = get_article_info(cite['title'])
             title = article_info['title']
-            url = article_info['url']
+            url = article_info.get('url')
+            author = article_info.get('author')
+
+            # 저자 표시 문자열
+            author_str = f" · {author}" if author else ""
 
             if url:
-                st.markdown(f"- [{title}]({url})")
+                st.markdown(f"- [{title}]({url}){author_str}")
             else:
-                st.markdown(f"- **{title}**")
+                st.markdown(f"- **{title}**{author_str}")
 
 def render_chat_history():
     """채팅 히스토리 렌더링"""
