@@ -75,22 +75,42 @@ def parse_frontmatter(file_path: Path) -> dict:
     return {}
 
 
+def load_existing_metadata():
+    """기존 메타데이터 로드"""
+    if METADATA_PATH.exists():
+        try:
+            with open(METADATA_PATH, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as e:
+            print(f"  기존 메타데이터 로드 실패: {e}")
+    return {}
+
+
 def generate_metadata():
-    """data/ 폴더의 모든 .md 파일에서 메타데이터 생성"""
+    """data/ 폴더의 .md 파일에서 메타데이터 생성 (기존 메타데이터 보존)"""
+    # 기존 메타데이터 로드 (보존)
+    metadata = load_existing_metadata()
+    existing_count = len(metadata)
+    print(f"기존 메타데이터: {existing_count}개 로드")
+
     if not DATA_PATH.exists():
         print(f"데이터 폴더가 없습니다: {DATA_PATH}")
-        return {}
+        return metadata  # 기존 메타데이터 반환
 
-    metadata = {}
     md_files = list(DATA_PATH.glob("*.md"))
+    new_count = 0
 
-    print(f"메타데이터 생성 중... ({len(md_files)}개 파일)")
+    print(f"data/ 폴더 스캔 중... ({len(md_files)}개 파일)")
 
     for file_path in md_files:
-        frontmatter = parse_frontmatter(file_path)
-
         # 파일명 (확장자 제외)을 키로 사용
         key = file_path.stem
+
+        # 이미 존재하면 건너뜀
+        if key in metadata:
+            continue
+
+        frontmatter = parse_frontmatter(file_path)
 
         # 저자 추출 (리스트 또는 문자열)
         author = frontmatter.get('author', [])
@@ -102,7 +122,9 @@ def generate_metadata():
             'url': frontmatter.get('source', ''),
             'author': author
         }
+        new_count += 1
 
+    print(f"새로 추가된 메타데이터: {new_count}개")
     return metadata
 
 
